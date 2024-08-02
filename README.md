@@ -18,14 +18,8 @@
 ![show](/storage/images/show.png)
 
 
-#### Валидация полей ARTICLE
-
-происходит в контроллере App\Http\Controllers\ProductController, методе validateFields
-
-#### При создании продукта реализовать отправку на заданный в конфигурации Email (config(‘products.email’)) уведомления (Notification) о том, что продукт создан.
-#### Уведомление должно отправляться через задачу (Job) в очереди (Queue).
-
-Почта отправляется через класс \App\Mail\NewProductMail(Mailable)
++ Валидация полей ARTICLE происходит в контроллере ``App\Http\Controllers\ProductController``, методе ``validateFields``.
++ Уведомление о новом товаре отправлятся на почту с помощью класса ``\App\Mail\NewProductMail`` через задачу ``\App\Jobs\SendEmailJob`` в очереди (Queue). Скрипт очереди - ``enterplan-queue.php``
 
 #### Установка
 + composer install
