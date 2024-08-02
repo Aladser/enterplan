@@ -1,0 +1,30 @@
+.bg-theme {
+    background-color: #F2F6FA;
+}
+
+.bg-black-theme {
+    background-color: #374050;
+}
+
+.text-w-theme {
+    font-size: 0.75rem; /* 12px */
+    line-height: 0.8rem; /* 16px */
+}
+
+.w-theme {
+    width: 200px;
+}
+
+.w-200 {
+    width: 50rem;
+}
+
+.w-30percents {
+    width: 30%;
+}
+
+@media (max-width:800px) {
+    .panel-firmware {
+        display: none;
+    }
+}
