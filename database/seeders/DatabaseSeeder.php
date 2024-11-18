@@ -9,38 +9,46 @@ use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
+    private const string PASSWORD = '_strongpassword_';
+
     public function run()
     {
-        // Пользователи 
-        $password = Hash::make('admin@123');
+        $products = [
+            [
+                'articul' => 'A1',
+                'name' => 'Зефир',
+                'data' => json_encode(['color' => 'red', 'size' => 10]),
+            ],
+            [
+                'articul' => 'B1',
+                'name' => 'Мармелад',
+                'data' => json_encode(['color' => 'blue', 'size' => 20]),
+            ],
+            [
+                'articul' => 'C1',
+                'name' => 'Шоколад',
+                'status' => 'unavailable',
+                'data' => json_encode(['color' => 'green', 'size' => 30]),
+            ],
+        ];
+
+        // Пользователи
+        $password = Hash::make(self::PASSWORD);
+        User::create([
+            'name' => 'user',
+            'email' => 'user@test.ru',
+            'password' => $password,
+        ]);
         User::create([
             'name' => 'admin',
-            'email' => 'admin@mail.ru',
+            'email' => 'admin@test.ru',
             'password' => $password,
             'is_admin' => 1,
         ]);
-        User::create([
-            'name' => 'user',
-            'email' => 'user@mail.ru',
-            'password' => $password,
-        ]);
 
         // Товары
-        Product::create([
-            'articul' => 'A1',
-            'name' => 'Зефир',
-            'data' => json_encode(['color' => 'red', 'size' => 10]),
-        ]);
-        Product::create([
-            'articul' => 'B1',
-            'name' => 'Мармелад',
-            'data' => json_encode(['color' => 'blue', 'size' => 20]),
-        ]);
-        Product::create([
-            'articul' => 'C1',
-            'name' => 'Шоколад',
-            'status' => 'unavailable',
-            'data' => json_encode(['color' => 'green', 'size' => 30]),
-        ]);
+        foreach ($products as $product) {
+            Product::create($product);
+        }
     }
 }
